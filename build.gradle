@@ -1,0 +1,31 @@
+plugins {
+    id 'java'
+}
+
+group = 'org.cbigames'
+version = '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testImplementation platform('org.junit:junit-bom:5.9.1')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+
+    //JSON Lib
+    // https://mvnrepository.com/artifact/org.json/json
+    implementation 'org.json:json:20240303'
+
+    //Apache Microsoft office Lib
+    // https://mvnrepository.com/artifact/org.apache.poi/poi
+    implementation 'org.apache.poi:poi:5.3.0'
+
+    //Apache modern Microsoft Office files Lib
+    // https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml
+    implementation 'org.apache.poi:poi-ooxml:5.3.0'
+}
+
+test {
+    useJUnitPlatform()
+}
