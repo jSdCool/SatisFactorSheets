@@ -1,5 +1,10 @@
 package org.cbigames.satisfactorsheets;
 
+import org.apache.poi.ss.usermodel.BorderExtent;
+import org.apache.poi.ss.usermodel.BorderStyle;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.util.CellRangeAddress;
+import org.apache.poi.ss.util.PropertyTemplate;
 import org.json.JSONArray;
 
 import java.io.*;
@@ -73,5 +78,23 @@ public class Util {
 
         return new JSONArray(rawContent.toString());
 
+    }
+
+    static public void setBorders(Cell cell, boolean top, boolean bottom, boolean left, boolean right){
+        PropertyTemplate pt = new PropertyTemplate();
+        CellRangeAddress cra = new CellRangeAddress(cell.getRowIndex(),cell.getRowIndex(),cell.getColumnIndex(),cell.getColumnIndex());
+        if(top){
+            pt.drawBorders(cra, BorderStyle.MEDIUM, BorderExtent.TOP);
+        }
+        if(bottom){
+            pt.drawBorders(cra, BorderStyle.MEDIUM, BorderExtent.BOTTOM);
+        }
+        if(left){
+            pt.drawBorders(cra, BorderStyle.MEDIUM, BorderExtent.LEFT);
+        }
+        if(right){
+            pt.drawBorders(cra, BorderStyle.MEDIUM, BorderExtent.RIGHT);
+        }
+        pt.applyBorders(cell.getSheet());
     }
 }

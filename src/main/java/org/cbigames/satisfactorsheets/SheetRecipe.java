@@ -10,53 +10,51 @@ import org.apache.poi.ss.util.PropertyTemplate;
 public class SheetRecipe {
     public SheetRecipe(Recipe recipe, Row[] rows, int offset){
         this.recipe = recipe;
-        this.rows = rows;
-        this.offset=offset;
 
         //top row cells
         Cell c1 = rows[0].createCell(offset*with);
-        setBorders(c1,true,false,true,false);
+        Util.setBorders(c1,true,false,true,false);
         Cell c2 = rows[0].createCell(offset*with+1);
         c2.setCellValue("Per Min");
-        setBorders(c2,true,false,false,false);
+        Util.setBorders(c2,true,false,false,false);
         Cell c3 = rows[0].createCell(offset*with+2);
         c3.setCellValue("Per Craft");
-        setBorders(c3,true,false,false,false);
+        Util.setBorders(c3,true,false,false,false);
         Cell c4 = rows[0].createCell(offset*with+3);
         c4.setCellValue("Total");
-        setBorders(c4,true,false,false,false);
+        Util.setBorders(c4,true,false,false,false);
 
         Cell c5a = rows[1].createCell(offset*with);
-        setBorders(c5a,false,false,true,false);
+        Util.setBorders(c5a,false,false,true,false);
 
         Cell c5 = rows[2].createCell(offset*with);
-        setBorders(c5,false,false,true,false);
+        Util.setBorders(c5,false,false,true,false);
         if(recipe.isHasSecondOutput()){
             c5.setCellValue(recipe.getSecondOutputItem());
         }
 
         Cell c6 = rows[3].createCell(offset*with);
-        setBorders(c6,false,true,true,false);
+        Util.setBorders(c6,false,true,true,false);
         c6.setCellValue(recipe.getOutputItem());
 
         Cell c7 = rows[4].createCell(offset*with);
-        setBorders(c7,false,false,true,false);
+        Util.setBorders(c7,false,false,true,false);
         c7.setCellValue(recipe.getInput0Item());
 
         Cell c8 = rows[5].createCell(offset*with);
-        setBorders(c8,false,false,true,false);
+        Util.setBorders(c8,false,false,true,false);
         if(recipe.getNumInputs()>=2) {
             c8.setCellValue(recipe.getInput1Item());
         }
 
         Cell c9 = rows[6].createCell(offset*with);
-        setBorders(c9,false,false,true,false);
+        Util.setBorders(c9,false,false,true,false);
         if(recipe.getNumInputs()>=3) {
             c9.setCellValue(recipe.getInput2Item());
         }
 
         Cell c10 = rows[7].createCell(offset*with);
-        setBorders(c10,false,true,true,false);
+        Util.setBorders(c10,false,true,true,false);
         if(recipe.getNumInputs()>=4) {
             c10.setCellValue(recipe.getInput3Item());
         }
@@ -76,14 +74,14 @@ public class SheetRecipe {
         outputPerMin.setCellValue(recipe.getPrimaryOutputPerMin());
         outputPerCraft.setCellValue(recipe.getPrimaryOutputPerCraft());
         outputTotal.setCellFormula(outputPerMin.getAddress().formatAsString()+"*"+numberMachines.getAddress().formatAsString());
-        setBorders(outputPerMin,false,true,false,false);
-        setBorders(outputPerCraft,false,true,false,false);
-        setBorders(outputTotal,false,true,false,false);
+        Util.setBorders(outputPerMin,false,true,false,false);
+        Util.setBorders(outputPerCraft,false,true,false,false);
+        Util.setBorders(outputTotal,false,true,false,false);
 
-        craftingRatioFormula=outputPerMin.getAddress().formatAsString()+"/"+outputPerCraft.getAddress().formatAsString();
+        String craftingRatioFormula = outputPerMin.getAddress().formatAsString() + "/" + outputPerCraft.getAddress().formatAsString();
 
         if(recipe.isHasSecondOutput()){
-            output2PerMin.setCellFormula(craftingRatioFormula+"*"+output2PerCraft.getAddress().formatAsString());
+            output2PerMin.setCellFormula(craftingRatioFormula +"*"+output2PerCraft.getAddress().formatAsString());
             output2PerCraft.setCellValue(recipe.getSecondOutputPerCraft());
             output2Total.setCellFormula(output2PerMin.getAddress().formatAsString()+"*"+numberMachines.getAddress().formatAsString());
         }
@@ -104,28 +102,28 @@ public class SheetRecipe {
         input3PerCraft = rows[7].createCell(offset*with+2);
         input3Total = rows[7].createCell(offset*with+3);
 
-        setBorders(input3PerMin,false,true,false,false);
-        setBorders(input3PerCraft,false,true,false,false);
-        setBorders(input3Total,false,true,false,false);
+        Util.setBorders(input3PerMin,false,true,false,false);
+        Util.setBorders(input3PerCraft,false,true,false,false);
+        Util.setBorders(input3Total,false,true,false,false);
 
-        input0PerMin.setCellFormula(craftingRatioFormula+"*"+input0PerCraft.getAddress().formatAsString());
+        input0PerMin.setCellFormula(craftingRatioFormula +"*"+input0PerCraft.getAddress().formatAsString());
         input0PerCraft.setCellValue(recipe.getInput0PerCraft());
         input0Total.setCellFormula(input0PerMin.getAddress().formatAsString()+"*"+numberMachines.getAddress().formatAsString());
 
         if(recipe.getNumInputs()>=2) {
-            input1PerMin.setCellFormula(craftingRatioFormula+"*"+input1PerCraft.getAddress().formatAsString());
+            input1PerMin.setCellFormula(craftingRatioFormula +"*"+input1PerCraft.getAddress().formatAsString());
             input1PerCraft.setCellValue(recipe.getInput1PerCraft());
             input1Total.setCellFormula(input1PerMin.getAddress().formatAsString()+"*"+numberMachines.getAddress().formatAsString());
         }
 
         if(recipe.getNumInputs()>=3) {
-            input2PerMin.setCellFormula(craftingRatioFormula+"*"+input2PerCraft.getAddress().formatAsString());
+            input2PerMin.setCellFormula(craftingRatioFormula +"*"+input2PerCraft.getAddress().formatAsString());
             input2PerCraft.setCellValue(recipe.getInput2PerCraft());
             input2Total.setCellFormula(input2PerMin.getAddress().formatAsString()+"*"+numberMachines.getAddress().formatAsString());
         }
 
         if(recipe.getNumInputs()>=4) {
-            input3PerMin.setCellFormula(craftingRatioFormula+"*"+input3PerCraft.getAddress().formatAsString());
+            input3PerMin.setCellFormula(craftingRatioFormula +"*"+input3PerCraft.getAddress().formatAsString());
             input3PerCraft.setCellValue(recipe.getInput3PerCraft());
             input3Total.setCellFormula(input3PerMin.getAddress().formatAsString()+"*"+numberMachines.getAddress().formatAsString());
         }
@@ -141,30 +139,9 @@ public class SheetRecipe {
 
     private final Recipe recipe;
 
-    private String craftingRatioFormula;
-
-    private Row[] rows;
-    private int offset;
-
     public Recipe getRecipe() {
         return recipe;
     }
 
-    static void setBorders(Cell cell,boolean top,boolean bottom,boolean left, boolean right){
-        PropertyTemplate pt = new PropertyTemplate();
-        CellRangeAddress cra = new CellRangeAddress(cell.getRowIndex(),cell.getRowIndex(),cell.getColumnIndex(),cell.getColumnIndex());
-        if(top){
-            pt.drawBorders(cra, BorderStyle.MEDIUM, BorderExtent.TOP);
-        }
-        if(bottom){
-            pt.drawBorders(cra, BorderStyle.MEDIUM, BorderExtent.BOTTOM);
-        }
-        if(left){
-            pt.drawBorders(cra, BorderStyle.MEDIUM, BorderExtent.LEFT);
-        }
-        if(right){
-            pt.drawBorders(cra, BorderStyle.MEDIUM, BorderExtent.RIGHT);
-        }
-        pt.applyBorders(cell.getSheet());
-    }
+
 }
