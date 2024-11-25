@@ -108,4 +108,20 @@ public class Recipe {
     public int getNumInputs() {
         return numInputs;
     }
+
+    @SuppressWarnings("all")
+    public String getInput(int index){
+        switch (index){
+            case 0:
+                return input0Item;
+            case 1:
+                return input1Item;
+            case 2:
+                return input2Item;
+            case 3:
+                return input3Item;
+            default:
+                return null;
+        }
+    }
 }

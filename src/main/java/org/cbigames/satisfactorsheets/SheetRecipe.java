@@ -1,15 +1,15 @@
 package org.cbigames.satisfactorsheets;
 
-import org.apache.poi.ss.usermodel.BorderExtent;
-import org.apache.poi.ss.usermodel.BorderStyle;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.util.CellRangeAddress;
-import org.apache.poi.ss.util.PropertyTemplate;
+
+import java.util.ArrayList;
 
 public class SheetRecipe {
-    public SheetRecipe(Recipe recipe, Row[] rows, int offset){
+    public SheetRecipe(Recipe recipe, Row[] rows, int offset,int overrideMachineNumber){
         this.recipe = recipe;
+        this.overrideMachineNumber = overrideMachineNumber;
 
         //top row cells
         Cell c1 = rows[0].createCell(offset*with);
@@ -139,9 +139,63 @@ public class SheetRecipe {
 
     private final Recipe recipe;
 
+    private ArrayList<SheetRecipe> requireRecipes = new ArrayList<>(),provideReductions = new ArrayList<>();
+    private ArrayList<Integer> requireIndex = new ArrayList<>();
+
+    private int overrideMachineNumber;
+
+
     public Recipe getRecipe() {
         return recipe;
     }
 
+    public void addRequires(SheetRecipe recipe, int input){
+        requireRecipes.add(recipe);
+        requireIndex.add(input);
+    }
 
+    public void addReduction(SheetRecipe recipe){
+        provideReductions.add(recipe);
+    }
+
+    @SuppressWarnings("all")
+    public Cell getInputTotal(int index){
+        switch(index){
+            case 0:
+                return input0Total;
+            case 1:
+                return input1Total;
+            case 2:
+                return input2Total;
+            case 3:
+                return input3Total;
+            default:
+                return null;
+        }
+    }
+
+    public Cell getSecondaryOutputTotal() {
+        return output2Total;
+    }
+
+    public void writeMachineCell(){
+        if(overrideMachineNumber!=0){
+            numberMachines.setCellValue(overrideMachineNumber);
+        }else {
+            String[] requiresCells = new String[requireRecipes.size()],reductionCells = new String[provideReductions.size()];
+            for(int i=0;i<requireRecipes.size();i++){
+                requiresCells[i] = requireRecipes.get(i).getInputTotal(requireIndex.get(i)).getAddress().formatAsString();
+            }
+            for(int i=0;i<provideReductions.size();i++){
+                requiresCells[i]=provideReductions.get(i).getSecondaryOutputTotal().getAddress().formatAsString();
+            }
+            String requiredAddition = String.join("+",requiresCells);
+            String reductionsSubtract = String.join("-",reductionCells);
+            if(!provideReductions.isEmpty()) {
+                numberMachines.setCellFormula("(" + requiredAddition + "-" + reductionsSubtract + ")/" + outputPerMin.getAddress().formatAsString());
+            }else{
+                numberMachines.setCellFormula("(" + requiredAddition + ")/" + outputPerMin.getAddress().formatAsString());
+            }
+        }
+    }
 }
