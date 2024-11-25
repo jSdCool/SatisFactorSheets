@@ -187,7 +187,7 @@ public class SheetRecipe {
                 requiresCells[i] = requireRecipes.get(i).getInputTotal(requireIndex.get(i)).getAddress().formatAsString();
             }
             for(int i=0;i<provideReductions.size();i++){
-                requiresCells[i]=provideReductions.get(i).getSecondaryOutputTotal().getAddress().formatAsString();
+                reductionCells[i]=provideReductions.get(i).getSecondaryOutputTotal().getAddress().formatAsString();
             }
             String requiredAddition = String.join("+",requiresCells);
             String reductionsSubtract = String.join("-",reductionCells);

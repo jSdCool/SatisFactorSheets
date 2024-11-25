@@ -1,5 +1,6 @@
 package org.cbigames.satisfactorsheets;
 
+import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
@@ -62,7 +63,8 @@ public class Generator {
                         }
                         //if not found then add to raw resources list
                         if(!success){
-                            rawResources.add(item);
+                            if(!rawResources.contains(item))
+                                rawResources.add(item);
                         }
                     }
                 }
@@ -93,6 +95,38 @@ public class Generator {
             }
             for(SheetRecipe sr:sheetRecipes){
                 sr.writeMachineCell();
+            }
+
+            Row preRawResourcesRow =  sheet.createRow(10);
+            Cell rawResourceDescriptionCell = preRawResourcesRow.createCell(1);
+            rawResourceDescriptionCell.setCellValue("Raw Resource");
+            Cell rawResourceammountCell = preRawResourcesRow.createCell(2);
+            rawResourceammountCell.setCellValue("Total");
+
+            //display the raw resources
+            for(int i=0;i< rawResources.size();i++){
+                Row row = sheet.createRow(i+11);
+                Cell nameCell = row.createCell(1);
+                String item = rawResources.get(i);
+                nameCell.setCellValue(item);
+                ArrayList<String> resourceRequireCells =new ArrayList<>();
+                ArrayList<String> reductionCells = new ArrayList<>();
+                for(SheetRecipe osr:sheetRecipes) {
+                    for (int j = 0; j < osr.getRecipe().getNumInputs(); j++) {
+                        if (osr.getRecipe().getInput(j).equals(item)) {
+                            resourceRequireCells.add(osr.getInputTotal(j).getAddress().formatAsString());
+                        }
+                    }
+                    if (osr.getRecipe().isHasSecondOutput() && osr.getRecipe().getSecondOutputItem().equals(item)) {
+                        reductionCells.add(osr.getSecondaryOutputTotal().getAddress().formatAsString());
+                    }
+                }
+                Cell ammountCell = row.createCell(2);
+                if(reductionCells.isEmpty()){
+                    ammountCell.setCellFormula(String.join("+",resourceRequireCells.toArray(new String[]{})));
+                }else {
+                    ammountCell.setCellFormula(String.join("+",resourceRequireCells.toArray(new String[]{}))+"-"+String.join("-",reductionCells.toArray(new String[]{})));
+                }
             }
 
 
