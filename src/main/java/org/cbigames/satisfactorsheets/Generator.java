@@ -4,12 +4,9 @@ import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.streaming.SXSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.json.JSONArray;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -31,6 +28,10 @@ public class Generator {
         }
     }
 
+    /**Generate an Excel spreadsheet (.xlsx) for the given recipe
+     * @param recipeToMake the recipe to make the sheet for
+     * @param out the output stream to write the sheet to. NOTE: the stream will NOT be closed
+     */
     public static void generate(Recipe recipeToMake, OutputStream out){
         try (Workbook wb = new XSSFWorkbook()){
             Sheet sheet = wb.createSheet("test");
