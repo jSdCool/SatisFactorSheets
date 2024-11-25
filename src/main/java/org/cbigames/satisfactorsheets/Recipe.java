@@ -124,4 +124,9 @@ public class Recipe {
                 return null;
         }
     }
+
+    @Override
+    public String toString() {
+        return getOutputItem();
+    }
 }
