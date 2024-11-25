@@ -10,7 +10,7 @@ public class Main {
     public static void main(String[] args) {
         Recipe r = null;
         for(int i=0;i<Generator.recipes.length;i++){
-            if(Generator.recipes[i].getOutputItem().equals("FusedModularFrame")){
+            if(Generator.recipes[i].getOutputItem().equals("Ficsonium")){
                 r = Generator.recipes[i];
                 break;
             }

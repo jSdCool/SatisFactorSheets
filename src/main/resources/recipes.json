@@ -212,7 +212,7 @@
      "Primary Per Min": 2.5,
      "Primary Output Item": "Computer",
      "Input 1 Per Craft": 8,
-     "Input 0 Item": "CurcutBoard",
+     "Input 0 Item": "CircutBoard",
      "Input 2 Item": "Plastic",
      "Input 0 Per Craft": 4,
      "Input 2 Per Craft": 16
@@ -632,7 +632,7 @@
      "Primary Per Min": 30,
      "Primary Output Item": "NitricAcid",
      "Input 1 Per Craft": 3,
-     "Input 0 Item": "NitrogenGass",
+     "Input 0 Item": "NitrogenGas",
      "Input 2 Item": "IronPlate",
      "Input 0 Per Craft": 12,
      "Input 2 Per Craft": 1
