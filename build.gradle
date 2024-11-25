@@ -1,9 +1,11 @@
 plugins {
     id 'java'
+    id 'application'
+    id 'com.github.johnrengelman.shadow' version '8.1.1'
 }
 
 group = 'org.cbigames'
-version = '1.0-SNAPSHOT'
+version = '1.0'
 
 repositories {
     mavenCentral()
@@ -28,4 +30,14 @@ dependencies {
 
 test {
     useJUnitPlatform()
+}
+
+application{
+    mainClass = 'org.cbigames.Main'
+}
+
+jar{
+    manifest {
+        attributes 'Main-Class': application.mainClass
+    }
 }
