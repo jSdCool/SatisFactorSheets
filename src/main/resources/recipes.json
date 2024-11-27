@@ -569,7 +569,7 @@
      "Primary Output Item": "TurboRifleAmmo",
      "Input 1 Per Craft": 3,
      "Input 0 Item": "RifleAmmo",
-     "Input 2 Item": "TurboFuel",
+     "Input 2 Item": "Turbofuel",
      "Input 0 Per Craft": 25,
      "Input 2 Per Craft": 3
    },
