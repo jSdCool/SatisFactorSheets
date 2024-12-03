@@ -1190,5 +1190,111 @@
      "Input 1 Per Craft": 2,
      "Second Output Per Craft": 20,
      "Input 2 Per Craft": 40
-   }
+   },
+  {
+    "Primary Per Craft": 1,
+    "Num Inputs": 1,
+    "Primary Per Min": 10,
+    "Primary Output Item": "FICSMASTreeBranch",
+    "Input 0 Item": "FICSMASGift",
+    "Input 0 Per Craft": 1
+  },
+  {
+    "Primary Per Craft": 1,
+    "Num Inputs": 1,
+    "Primary Per Min": 5,
+    "Primary Output Item": "RedFICSMASOrnament",
+    "Input 0 Item": "FICSMASGift",
+    "Input 0 Per Craft": 1
+  },
+  {
+    "Primary Per Craft": 2,
+    "Num Inputs": 1,
+    "Primary Per Min": 10,
+    "Primary Output Item": "BlueFICSMASOrnament",
+    "Input 0 Item": "FICSMASGift",
+    "Input 0 Per Craft": 1
+  },
+  {
+    "Primary Per Craft": 1,
+    "Num Inputs": 2,
+    "Input 1 Item": "CopperIngot",
+    "Primary Per Min": 5,
+    "Primary Output Item": "CopperFICSMASOrnament",
+    "Input 1 Per Craft": 2,
+    "Input 0 Item": "RedFICSMASOrnament",
+    "Input 0 Per Craft": 2
+  },
+  {
+    "Primary Per Craft": 1,
+    "Num Inputs": 2,
+    "Input 1 Item": "IronIngot",
+    "Primary Per Min": 5,
+    "Primary Output Item": "IronFICSMASOrnament",
+    "Input 1 Per Craft": 3,
+    "Input 0 Item": "BlueFICSMASOrnament",
+    "Input 0 Per Craft": 3
+  },
+  {
+    "Primary Per Craft": 2,
+    "Num Inputs": 2,
+    "Input 1 Item": "FICSMASOrnamentBundle",
+    "Primary Per Min": 2,
+    "Primary Output Item": "FICSMASWreath",
+    "Input 1 Per Craft": 6,
+    "Input 0 Item": "FICSMASTreeBranch",
+    "Input 0 Per Craft": 15
+  },
+  {
+    "Primary Per Craft": 1,
+    "Num Inputs": 2,
+    "Input 1 Item": "IronFICSMASOrnament",
+    "Primary Per Min": 5,
+    "Primary Output Item": "FICSMASOrnamentBundle",
+    "Input 1 Per Craft": 1,
+    "Input 0 Item": "CopperFICSMASOrnament",
+    "Input 0 Per Craft": 1
+  },
+  {
+    "Primary Per Craft": 1,
+    "Num Inputs": 1,
+    "Primary Per Min": 5,
+    "Primary Output Item": "CandyCane",
+    "Input 0 Item": "FICSMASGift",
+    "Input 0 Per Craft": 3
+  },
+  {
+    "Primary Per Craft": 1,
+    "Num Inputs": 1,
+    "Primary Per Min": 5,
+    "Primary Output Item": "FICSMASBow",
+    "Input 0 Item": "FICSMASGift",
+    "Input 0 Per Craft": 2
+  },
+  {
+    "Primary Per Craft": 2,
+    "Num Inputs": 1,
+    "Primary Per Min": 10,
+    "Primary Output Item": "FICSMASActualSnow",
+    "Input 0 Item": "FICSMASGift",
+    "Input 0 Per Craft": 5
+  },
+  {
+    "Primary Per Craft": 1,
+    "Num Inputs": 2,
+    "Input 1 Item": "CandyCane",
+    "Primary Per Min": 1,
+    "Primary Output Item": "FICSMASWonderStar",
+    "Input 1 Per Craft": 20,
+    "Input 0 Item": "FICSMASWreath",
+    "Input 0 Per Craft": 5
+  },
+  {
+    "Primary Per Craft": 1,
+    "Num Inputs": 1,
+    "Primary Per Min": 5,
+    "Primary Output Item": "Snowball",
+    "Input 0 Item": "FICSMASActualSnow",
+    "Input 0 Per Craft": 3
+  }
  ]
