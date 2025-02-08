@@ -29,6 +29,9 @@ public class Recipe {
                 input1PerCraft = input.getDouble("Input 1 Per Craft");
 
         }
+        if(input.has("Recipe Name")){
+            recipeName = input.getString("Recipe Name");
+        }
 
     }
 
@@ -46,6 +49,7 @@ public class Recipe {
     private double input2PerCraft=0;
     private double input3PerCraft=0;
     private boolean hasSecondOutput = false;
+    private String recipeName = null;
 
     private final int numInputs;
 
@@ -127,6 +131,9 @@ public class Recipe {
 
     @Override
     public String toString() {
+        if(recipeName != null){
+            return recipeName;
+        }
         return getOutputItem();
     }
 }

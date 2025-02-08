@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Generator {
-    public static final Recipe[] recipes, altRecipes = new Recipe[0];
+    public static final Recipe[] recipes, altRecipes;
 
     static {
         JSONArray recipesJSON;
@@ -26,15 +26,25 @@ public class Generator {
         for(int i=0;i<recipes.length;i++){
             recipes[i] = new Recipe(recipesJSON.getJSONObject(i));
         }
+        JSONArray altRecipesJSON;
+        try{
+            altRecipesJSON = Util.loadJSONArray(Objects.requireNonNull(Generator.class.getClassLoader().getResourceAsStream("alts.json")));
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        altRecipes = new Recipe[altRecipesJSON.length()];
+        for (int i=0;i< altRecipes.length;i++){
+            altRecipes[i] = new Recipe(altRecipesJSON.getJSONObject(i));
+        }
     }
 
     /**Generate an Excel spreadsheet (.xlsx) for the given recipe
      * @param recipeToMake the recipe to make the sheet for
      * @param out the output stream to write the sheet to. NOTE: the stream will NOT be closed
      */
-    public static void generate(Recipe recipeToMake, OutputStream out){
+    public static void generate(Recipe recipeToMake, OutputStream out, Recipe[] enabledAltRecipes){
         try (Workbook wb = new XSSFWorkbook()){
-            Sheet sheet = wb.createSheet("test");
+            Sheet sheet = wb.createSheet("Recipe");
             Row[] rows = new Row[8];
             for(int i=0;i< rows.length;i++){
                 rows[i] = sheet.createRow(i);
@@ -52,8 +62,16 @@ public class Generator {
                         boolean success = false;
                         //look for the item
                         //first look in the selected alt recipes
-                        //TODO alt recipes
-
+                        for(Recipe ar: enabledAltRecipes){
+                            if(ar.getOutputItem().equals(item)){
+                                success=true;
+                                sheetRecipes.add(new SheetRecipe(ar,rows,sheetRecipes.size(),0));
+                                break;
+                            }
+                        }
+                        if(success){
+                            continue;
+                        }
                         //check the default recipes
                         for(Recipe r: recipes){
                             if(r.getOutputItem().equals(item)){

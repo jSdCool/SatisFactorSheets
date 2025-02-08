@@ -212,7 +212,7 @@
      "Primary Per Min": 2.5,
      "Primary Output Item": "Computer",
      "Input 1 Per Craft": 8,
-     "Input 0 Item": "CircutBoard",
+     "Input 0 Item": "CircuitBoard",
      "Input 2 Item": "Plastic",
      "Input 0 Per Craft": 4,
      "Input 2 Per Craft": 16
@@ -249,7 +249,7 @@
      "Primary Output Item": "High-SpeedConnector",
      "Input 1 Per Craft": 10,
      "Input 0 Item": "Quickwire",
-     "Input 2 Item": "CircutBoard",
+     "Input 2 Item": "CircuitBoard",
      "Input 0 Per Craft": 56,
      "Input 2 Per Craft": 1
    },
@@ -258,7 +258,7 @@
      "Num Inputs": 2,
      "Input 1 Item": "Plastic",
      "Primary Per Min": 7.5,
-     "Primary Output Item": "CircutBoard",
+     "Primary Output Item": "CircuitBoard",
      "Input 1 Per Craft": 4,
      "Input 0 Item": "CopperSheet",
      "Input 0 Per Craft": 2
@@ -746,7 +746,7 @@
    {
      "Primary Per Craft": 1,
      "Num Inputs": 4,
-     "Input 1 Item": "CircutBoard",
+     "Input 1 Item": "CircuitBoard",
      "Input 3 Per Craft": 2,
      "Primary Per Min": 1,
      "Primary Output Item": "AdaptiveControlUnit",
